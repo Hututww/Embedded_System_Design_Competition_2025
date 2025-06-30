@@ -1,2 +1,2 @@
 # Embedded_System_Design_Competition_2025
-我要当无人机高手！
+无人机高手！
