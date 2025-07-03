@@ -1,0 +1,15 @@
+# Yolov5 ROS节点配置
+weights: $(find yolov5_ros)/yolov5/weights/yolov5s.pt
+image_topic: /camera/image_raw
+output_topic: /yolov5/detections
+conf: 0.7  # 置信度阈值
+iou: 0.45  # NMS IoU阈值
+agnostic_nms: false
+device: cpu  # 使用CPU推理
+classes: 0  # 只检测火焰(类别0)
+half: false  # 不使用半精度
+view_img: false  # 不在节点内显示图像
+save_txt: false  # 不保存检测结果到txt
+line_thickness: 2  # 边界框线条粗细
+hide_labels: false  # 显示标签
+hide_conf: false  # 显示置信度    
