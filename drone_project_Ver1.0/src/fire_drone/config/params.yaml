@@ -1,0 +1,53 @@
+# YOLOv5检测器参数
+yolov5_detector:
+  ros__parameters:
+    # 模型配置
+    model_path: "src/fire_drone/weights/best.pt"
+    conf_threshold: 0.5
+    iou_threshold: 0.45
+    image_topic: "camera/image_raw"
+    detection_topic: "detection/image_raw"
+    fire_topic: "fire_position"
+    
+    # 目标类别（根据训练时的classes.names调整）
+    target_classes: ["fire"]
+    
+    # 图像预处理参数
+    image_width: 320
+    image_height: 320
+    rgb_order: true  # 是否使用RGB顺序（而非BGR）
+    
+    # 设备配置
+    device: "cpu"  # 使用GPU (cuda:0) 或CPU (cpu)
+
+# 无人机控制器参数
+drone_controller:
+  ros__parameters:
+    # MAVROS连接配置
+    mavros_namespace: "mavros"
+    
+    # 飞行参数
+    takeoff_altitude: 10.0  # 起飞高度（米）
+    waypoint_tolerance: 0.5  # 航点到达容差（米）
+    max_speed: 2.0  # 最大飞行速度（米/秒）
+    
+    # 火灾响应参数
+    fire_approach_distance: 15.0  # 接近火源的安全距离（米）
+    search_altitude: 20.0  # 搜索模式高度（米）
+    
+    # 安全参数
+    min_altitude: 5.0  # 最小飞行高度（米）
+    max_altitude: 50.0  # 最大飞行高度（米）
+    battery_threshold: 20  # 低电量阈值（百分比）
+
+# 主控制器参数
+main_controller:
+  ros__parameters:
+    # 任务配置
+    mission_mode: "auto"  # auto 或 manual
+    search_pattern: "lawnmower"  # lawnmower 或 spiral
+    
+    # 决策参数
+    fire_confidence_threshold: 0.6  # 确认火灾的最低置信度
+    fire_detection_timeout: 30  # 无火灾检测的超时时间（秒）
+    waypoint_retry_attempts: 3  # 航点重试次数
